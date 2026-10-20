@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>أسئلة الندوة</title>
+  
+  <!-- خط تجولي العربي -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary-color: #0f766e;
+      --primary-hover: #0d9488;
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border-color: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Tajawal', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 16px;
+    }
+
+    main {
+      width: 100%;
+      max-width: 600px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .logo-img {
+      max-width: 120px;
+      height: auto;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .form-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--border-color);
+      margin-bottom: 24px;
+    }
+
+    .form-card label {
+      display: block;
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 90px;
+      padding: 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      font-size: 15px;
+      resize: none;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    textarea:focus {
+      border-color: var(--primary-color);
+    }
+
+    .btn-submit {
+      width: 100%;
+      background-color: var(--primary-color);
+      color: #ffffff;
+      border: none;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background 0.2s;
+    }
+
+    .btn-submit:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 12px;
+    }
+
+    .section-header h3 {
+      font-size: 18px;
+    }
+
+    .section-header small {
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    .questions-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .q-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 16px;
+      border: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    }
+
+    .q-text {
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--text-main);
+      word-break: break-word;
+    }
+
+    .delete-btn {
+      background: none;
+      border: none;
+      color: #ef4444;
+      font-size: 12px;
+      cursor: pointer;
+      margin-top: 6px;
+      padding: 0;
+      font-weight: 500;
+    }
+
+    .delete-btn:hover {
+      text-decoration: underline;
+    }
+
+    .like-btn {
+      background: #f1f5f9;
+      border: 1px solid var(--border-color);
+      padding: 6px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      color: var(--text-main);
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+
+    .like-btn:hover {
+      background: #e2e8f0;
+    }
+
+    footer {
+      margin-top: auto;
+      padding-top: 30px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    footer img {
+      width: 20px;
+      height: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+    <header>
+      <!-- ضع اسم صورة شعارك هنا -->
+      <img src="logo.png" alt="شعار المؤسسة" class="logo-img" id="logo">
+      <span class="subtitle">الاثنين 26 أكتوبر 2026م</span>
+      <h1 id="eventTitle">اللقاء السنوي لأولياء ابتدائية المنار القرآنية </h1>
+    </header>
+
+    <div class="form-card">
+      <label for="questionInput">اكتب سؤالك بوضوح</label>
+      <textarea id="questionInput" placeholder="اكتب سؤالك هنا..."></textarea>
+      <button class="btn-submit" onclick="sendQuestion()">إرسال السؤال</button>
+    </div>
+
+    <div class="section-header">
+      <h3>الأسئلة</h3>
+      <small>مرتّبة حسب الإعجابات</small>
+    </div>
+
+    <div id="questionsContainer" class="questions-list">
+      جاري تحميل الأسئلة...
+    </div>
+  </main>
+
+
+  <!-- ربط Firebase وتفعيل البيانات الحية والإدارة -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { 
+      getFirestore, 
+      collection, 
+      addDoc, 
+      onSnapshot, 
+      doc, 
+      updateDoc, 
+      deleteDoc,
+      increment, 
+      orderBy, 
+      query, 
+      serverTimestamp 
+    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+    // إعدادات مشروعك في Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyD6ZVsR7CXZIvjaSYC9OKGmxykHM-mM4So",
+      authDomain: "nadwa-8efe3.firebaseapp.com",
+      projectId: "nadwa-8efe3",
+      storageBucket: "nadwa-8efe3.firebasestorage.app",
+      messagingSenderId: "308417718764",
+      appId: "1:308417718764:web:117367cad262d6da84f8c9",
+      measurementId: "G-TPYEW9YG9Z"
+    };
+
+    // تهيئة التطبيق وقاعدة البيانات
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const questionsRef = collection(db, "questions");
+
+    // 1. وظيفة إرسال سؤال جديد
+    window.sendQuestion = async function() {
+      const textInput = document.getElementById("questionInput");
+      const text = textInput.value.trim();
+
+      if (!text) {
+        alert("يرجى كتابة السؤال أولاً");
+        return;
+      }
+
+      await addDoc(questionsRef, {
+        text: text,
+        likes: 0,
+        createdAt: serverTimestamp()
+      });
+
+      textInput.value = "";
+    };
+
+    // 2. وظيفة التفاعل والإعجاب بالسؤال
+    window.likeQuestion = async function(id) {
+      const qDoc = doc(db, "questions", id);
+      await updateDoc(qDoc, {
+        likes: increment(1)
+      });
+    };
+
+    // 3. وظيفة حذف السؤال (خاصة بالمنظم)
+    window.deleteQuestion = async function(id) {
+      if (confirm("هل أنت متأكد من حذف هذا السؤال؟")) {
+        const qDoc = doc(db, "questions", id);
+        await deleteDoc(qDoc);
+      }
+    };
+
+    // 4. التحديث التلقائي اللحظي للأسئلة
+    const qQuery = query(questionsRef, orderBy("likes", "desc"));
+    onSnapshot(qQuery, (snapshot) => {
+      const container = document.getElementById("questionsContainer");
+      container.innerHTML = "";
+
+      if (snapshot.empty) {
+        container.innerHTML = "<p style='text-align:center; color:#64748b;'>لا توجد أسئلة بعد. كن أول من يسأل!</p>";
+        return;
+      }
+
+      snapshot.forEach((docSnap) => {
+        const data = docSnap.data();
+        const card = document.createElement("div");
+        card.className = "q-card";
+        card.innerHTML = `
+          <div style="flex-grow: 1;">
+            <div class="q-text">${data.text}</div>
+            <button class="delete-btn" onclick="deleteQuestion('${docSnap.id}')">🗑️ حذف السؤال</button>
+          </div>
+          <button class="like-btn" onclick="likeQuestion('${docSnap.id}')">
+            👍 <span>${data.likes || 0}</span>
+          </button>
+        `;
+        container.appendChild(card);
+      });
+    });
+  </script>
+</body>
+</html>
