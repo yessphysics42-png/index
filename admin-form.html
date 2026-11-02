@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لوحة استقبال المشاركات - الإدارة</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #0f766e;
+      --primary-hover: #0d9488;
+      --bg-color: #f0fdfa;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border-color: #ccfbf1;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Tajawal', sans-serif; }
+    body {
+      background-color: var(--bg-color);
+      background-image: radial-gradient(circle at 10% 20%, rgba(15, 118, 110, 0.1) 0%, transparent 20%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .form-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      width: 100%;
+      max-width: 550px;
+      box-shadow: 0 10px 25px -5px rgba(15, 118, 110, 0.1);
+      border: 1px solid var(--border-color);
+    }
+    h2 { font-size: 20px; color: var(--primary-color); margin-bottom: 20px; text-align: center; }
+    .form-group { margin-bottom: 14px; }
+    label { display: block; font-size: 13px; color: var(--text-muted); margin-bottom: 6px; font-weight: 700; }
+    input[type="text"], textarea {
+      width: 100%; padding: 10px 12px; border: 1px solid var(--border-color);
+      border-radius: 10px; font-size: 14px; outline: none; background: #fff;
+    }
+    input:focus, textarea:focus { border-color: var(--primary-color); }
+    textarea { height: 80px; resize: none; }
+    .btn-submit {
+      width: 100%; background-color: var(--primary-color); color: #fff; border: none;
+      padding: 12px; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 10px;
+    }
+    .btn-submit:hover { background-color: var(--primary-hover); }
+  </style>
+</head>
+<body>
+  <div class="form-card">
+    <h2>📥 تسجيل مشاركة جديدة (خاص بالمسؤول)</h2>
+    <div class="form-group">
+      <label>اسم الأستاذ المشارك:</label>
+      <input type="text" id="teacherName" placeholder="أدخل اسم الأستاذ...">
+    </div>
+    <div class="form-group">
+      <label>موضوع أو عنوان النشاط:</label>
+      <input type="text" id="activityTitle" placeholder="عنوان النشاط...">
+    </div>
+    <div class="form-group">
+      <label>الفئة المستهدفة:</label>
+      <input type="text" id="targetAudience" placeholder="مثال: السنة الأولى...">
+    </div>
+    <div class="form-group">
+      <label>الهدف التربوي من النشاط:</label>
+      <textarea id="educationalGoal" placeholder="اكتب الهدف التربوي..."></textarea>
+    </div>
+    <div class="form-group">
+      <label>إرفاق صورة أو فيديو:</label>
+      <input type="file" id="mediaFile" accept="image/*,video/*">
+    </div>
+    <button class="btn-submit" onclick="submitActivity()">رفع ونشر النشاط في منصة الأساتذة</button>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyD6ZVsR7CXZIvjaSYC9OKGmxykHM-mM4So",
+      authDomain: "nadwa-8efe3.firebaseapp.com",
+      projectId: "nadwa-8efe3",
+      storageBucket: "nadwa-8efe3.firebasestorage.app",
+      messagingSenderId: "308417718764",
+      appId: "1:308417718764:web:117367cad262d6da84f8c9",
+      measurementId: "G-TPYEW9YG9Z"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const activitiesRef = collection(db, "teacher_activities");
+
+    window.submitActivity = async function() {
+      const teacher = document.getElementById("teacherName").value.trim();
+      const title = document.getElementById("activityTitle").value.trim();
+      const target = document.getElementById("targetAudience").value.trim();
+      const goal = document.getElementById("educationalGoal").value.trim();
+      const fileInput = document.getElementById("mediaFile");
+
+      if (!teacher || !title || !target || !goal) {
+        alert("يرجى ملء جميع الحقول المطلوبة!");
+        return;
+      }
+
+      let mediaUrl = "";
+      if (fileInput.files.length > 0) {
+        const file = fileInput.files[0];
+        const reader = new FileReader();
+        reader.onload = async function(e) {
+          mediaUrl = e.target.result;
+          await saveToDB(teacher, title, target, goal, mediaUrl);
+        };
+        reader.readAsDataURL(file);
+      } else {
+        await saveToDB(teacher, title, target, goal, "");
+      }
+    };
+
+    async function saveToDB(teacher, title, target, goal, mediaUrl) {
+      try {
+        await addDoc(activitiesRef, {
+          teacher: teacher,
+          title: title,
+          target: target,
+          goal: goal,
+          mediaUrl: mediaUrl,
+          rank1Count: 0,
+          rank2Count: 0,
+          rank3Count: 0,
+          totalScore: 0,
+          createdAt: serverTimestamp()
+        });
+        document.getElementById("teacherName").value = "";
+        document.getElementById("activityTitle").value = "";
+        document.getElementById("targetAudience").value = "";
+        document.getElementById("educationalGoal").value = "";
+        document.getElementById("mediaFile").value = "";
+        alert("تم رفع النشاط بنجاح إلى منصة الأساتذة العامة!");
+      } catch (error) {
+        alert("حدث خطأ أثناء الرفع!");
+      }
+    }
+  </script>
+</body>
+</html>
