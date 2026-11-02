@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>جائزة النشاط المتميز - ابتدائية المنار القرآنية إناث</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary-color: #065f46;
+      --primary-hover: #047857;
+      --gold-color: #d97706;
+      --bg-color: #f4fbf7;
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --text-main: #064e3b;
+      --text-muted: #4b5563;
+      --border-color: #a7f3d0;
+      --input-bg: #ffffff;
+      --danger-color: #dc2626;
+    }
+
+    body.dark-mode {
+      --bg-color: #061a14;
+      --card-bg: rgba(15, 39, 30, 0.95);
+      --text-main: #ecfdf5;
+      --text-muted: #9ca3af;
+      --border-color: #065f46;
+      --input-bg: #0f271e;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Tajawal', sans-serif; transition: background 0.3s, color 0.3s, border-color 0.3s; }
+
+    body {
+      background-color: var(--bg-color);
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(6, 95, 70, 0.1) 0%, transparent 25%),
+        radial-gradient(circle at 90% 80%, rgba(217, 119, 6, 0.08) 0%, transparent 25%),
+        linear-gradient(to bottom, rgba(255,255,255,0.6), rgba(244,251,247,0.9));
+      background-attachment: fixed;
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 16px;
+    }
+
+    main { width: 100%; max-width: 680px; position: relative; }
+
+    .theme-toggle-btn {
+      position: absolute; top: 0; left: 0;
+      background: var(--card-bg); border: 1px solid var(--border-color);
+      color: var(--text-main); padding: 6px 12px; border-radius: 20px;
+      cursor: pointer; font-size: 13px; font-weight: 700; box-shadow: 0 4px 12px rgba(0,0,0,0.05); z-index: 10;
+    }
+
+    header {
+      text-align: center; margin-bottom: 25px; margin-top: 10px;
+      background: var(--card-bg); backdrop-filter: blur(8px);
+      padding: 25px 20px; border-radius: 20px; border: 1px solid var(--border-color);
+      box-shadow: 0 10px 25px -5px rgba(6, 95, 70, 0.08);
+    }
+
+    .logo-img { max-width: 110px; height: auto; margin-bottom: 10px; }
+    
+    .subtitle {
+      font-size: 13px; color: var(--gold-color); font-weight: 700;
+      background: rgba(217, 119, 6, 0.1); padding: 4px 12px; border-radius: 12px; display: inline-block; margin-bottom: 8px;
+    }
+
+    h1 { font-size: 21px; font-weight: 800; color: var(--text-main); line-height: 1.4; margin-bottom: 6px; }
+    .event-date { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+
+    .form-card {
+      background: var(--card-bg); backdrop-filter: blur(8px);
+      border-radius: 18px; padding: 20px; border: 1px solid var(--border-color);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.04); margin-bottom: 25px;
+    }
+
+    .form-group { margin-bottom: 12px; }
+    label { display: block; font-size: 13px; color: var(--text-muted); margin-bottom: 6px; font-weight: 700; }
+    
+    input[type="text"], textarea {
+      width: 100%; padding: 10px 12px; border: 1px solid var(--border-color);
+      border-radius: 10px; font-size: 14px; outline: none; background: var(--input-bg); color: var(--text-main);
+    }
+    textarea { height: 75px; resize: none; }
+    input:focus, textarea:focus { border-color: var(--primary-color); }
+
+    .btn-submit {
+      width: 100%; background-color: var(--primary-color); color: #fff; border: none;
+      padding: 12px; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 8px;
+    }
+    .btn-submit:hover { background-color: var(--primary-hover); }
+
+    .section-header {
+      display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 15px;
+    }
+    .section-header h3 { font-size: 18px; color: var(--text-main); font-weight: 800; }
+    .section-header small { color: var(--text-muted); font-size: 12px; }
+
+    .activities-list { display: flex; flex-direction: column; gap: 18px; }
+
+    .activity-card {
+      background: var(--card-bg); backdrop-filter: blur(8px);
+      border-radius: 18px; padding: 20px; border: 1px solid var(--border-color);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+    }
+
+    .activity-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 10px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;
+    }
+    .teacher-name { font-weight: 700; color: var(--primary-color); font-size: 15px; }
+    .activity-title { font-size: 17px; font-weight: 800; margin-bottom: 8px; color: var(--text-main); }
+    .activity-info { font-size: 13px; color: var(--text-muted); margin-bottom: 6px; }
+
+    .activity-media { margin: 12px 0; text-align: center; }
+    .activity-media img {
+      max-width: 100%; max-height: 260px; border-radius: 12px; object-fit: cover; border: 1px solid var(--border-color);
+    }
+
+    .ranking-container {
+      display: flex; flex-direction: column; gap: 8px; margin-top: 15px;
+      background: rgba(6, 95, 70, 0.03); padding: 12px; border-radius: 12px; border: 1px solid var(--border-color);
+    }
+    .ranking-label { font-size: 12px; font-weight: 700; color: var(--text-muted); text-align: center; }
+    .ranking-buttons { display: flex; gap: 8px; justify-content: center; }
+    
+    .rank-btn {
+      flex: 1; padding: 8px; border-radius: 10px; border: 1px solid var(--border-color);
+      background: var(--input-bg); color: var(--text-main); font-size: 12px; font-weight: 700; cursor: pointer; text-align: center;
+    }
+    .rank-btn.selected-1 { background: #f59e0b; color: white; border-color: #d97706; }
+    .rank-btn.selected-2 { background: #64748b; color: white; border-color: #475569; }
+    .rank-btn.selected-3 { background: #b45309; color: white; border-color: #92400e; }
+
+    .score-summary {
+      font-size: 12px; font-weight: 700; color: var(--gold-color); text-align: center; margin-top: 8px;
+    }
+
+    .delete-btn { background: none; border: none; color: var(--danger-color); font-size: 12px; cursor: pointer; display: none; }
+    body.is-admin .delete-btn { display: inline-block; }
+
+    .admin-only-section { display: none; }
+    body.is-admin .admin-only-section { display: block; }
+  </style>
+</head>
+<body>
+  <main>
+    <button class="theme-toggle-btn" onclick="toggleTheme()">
+      <span id="themeIcon">🌙</span> <span id="themeText">الوضع الليلي</span>
+    </button>
+
+    <header>
+      <img src="logo.png" alt="شعار المدرسة" class="logo-img" id="logo" onerror="this.style.display='none'">
+      <span class="subtitle">🌿 ابتدائية المنار القرآنية إناث 🌿</span>
+      <h1>جائزة النشاط المتميز لشهر أكتوبر 2026م</h1>
+      <div class="event-date">معرض الأنشطة والتميز التربوي</div>
+    </header>
+
+    <!-- لوحة المشرف لإضافة الأنشطة (تظهر فقط عند إضافة ?admin=true في رابط الموقع) -->
+    <div class="form-card admin-only-section">
+      <h3 style="font-size:16px; margin-bottom:12px; color:var(--primary-color);">📥 لوحة المشرف: إضافة نشاط جديد (صور فقط)</h3>
+      <div class="form-group">
+        <label>اسم الأستاذة المشاركة:</label>
+        <input type="text" id="teacherName" placeholder="أدخل اسم الأستاذة...">
+      </div>
+      <div class="form-group">
+        <label>عنوان النشاط:</label>
+        <input type="text" id="activityTitle" placeholder="عنوان النشاط...">
+      </div>
+      <div class="form-group">
+        <label>الفئة المستهدفة:</label>
+        <input type="text" id="targetAudience" placeholder="مثال: السنة الأولى...">
+      </div>
+      <div class="form-group">
+        <label>الهدف التربوي:</label>
+        <textarea id="educationalGoal" placeholder="الهدف التربوي للنشاط..."></textarea>
+      </div>
+      <div class="form-group">
+        <label>إرفاق صورة النشاط:</label>
+        <input type="file" id="mediaFile" accept="image/*">
+      </div>
+      <button class="btn-submit" onclick="submitActivity()">نشر النشاط في المعرض</button>
+    </div>
+
+    <div class="section-header">
+      <h3>الأنشطة المشاركة</h3>
+      <small>رتب أفضل 3 أنشطة (المرتبة 1، 2، 3)</small>
+    </div>
+
+    <div id="activitiesContainer" class="activities-list">
+      جاري تحميل الأنشطة...
+    </div>
+  </main>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc, increment, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyD6ZVsR7CXZIvjaSYC9OKGmxykHM-mM4So",
+      authDomain: "nadwa-8efe3.firebaseapp.com",
+      projectId: "nadwa-8efe3",
+      storageBucket: "nadwa-8efe3.firebasestorage.app",
+      messagingSenderId: "308417718764",
+      appId: "1:308417718764:web:117367cad262d6da84f8c9",
+      measurementId: "G-TPYEW9YG9Z"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const activitiesRef = collection(db, "teacher_activities");
+
+    window.toggleTheme = function() {
+      const isDark = document.body.classList.toggle('dark-mode');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      updateThemeUI(isDark);
+    };
+
+    function updateThemeUI(isDark) {
+      document.getElementById('themeIcon').innerText = isDark ? '☀️' : '🌙';
+      document.getElementById('themeText').innerText = isDark ? 'الوضع النهاري' : 'الوضع الليلي';
+    }
+
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark-mode');
+      updateThemeUI(true);
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('admin') === 'true') {
+      document.body.classList.add('is-admin');
+    }
+
+    let userRankings = JSON.parse(localStorage.getItem('userRankings') || '{}');
+
+    window.submitActivity = async function() {
+      const teacher = document.getElementById("teacherName").value.trim();
+      const title = document.getElementById("activityTitle").value.trim();
+      const target = document.getElementById("targetAudience").value.trim();
+      const goal = document.getElementById("educationalGoal").value.trim();
+      const fileInput = document.getElementById("mediaFile");
+
+      if (!teacher || !title || !target || !goal) {
+        alert("يرجى ملء جميع الحقول المطلوبة!");
+        return;
+      }
+
+      let mediaUrl = "";
+      if (fileInput.files.length > 0) {
+        const file = fileInput.files[0];
+        const reader = new FileReader();
+        reader.onload = async function(e) {
+          mediaUrl = e.target.result;
+          await saveToDB(teacher, title, target, goal, mediaUrl);
+        };
+        reader.readAsDataURL(file);
+      } else {
+        await saveToDB(teacher, title, target, goal, "");
+      }
+    };
+
+    async function saveToDB(teacher, title, target, goal, mediaUrl) {
+      try {
+        await addDoc(activitiesRef, {
+          teacher: teacher,
+          title: title,
+          target: target,
+          goal: goal,
+          mediaUrl: mediaUrl,
+          rank1Count: 0,
+          rank2Count: 0,
+          rank3Count: 0,
+          totalScore: 0,
+          createdAt: serverTimestamp()
+        });
+        document.getElementById("teacherName").value = "";
+        document.getElementById("activityTitle").value = "";
+        document.getElementById("targetAudience").value = "";
+        document.getElementById("educationalGoal").value = "";
+        document.getElementById("mediaFile").value = "";
+        alert("تم نشر النشاط بنجاح!");
+      } catch (error) {
+        alert("حدث خطأ أثناء النشر!");
+      }
+    }
+
+    window.setRank = async function(id, rank) {
+      const currentAssignedRank = userRankings[id];
+      const qDoc = doc(db, "teacher_activities", id);
+
+      if (currentAssignedRank === rank) {
+        let updateData = {};
+        updateData[`rank${rank}Count`] = increment(-1);
+        updateData.totalScore = increment(rank === 1 ? -3 : rank === 2 ? -2 : -1);
+        await updateDoc(qDoc, updateData);
+        delete userRankings[id];
+      } else {
+        for (let actId in userRankings) {
+          if (userRankings[actId] === rank) {
+            alert(`لقد اخترت مسبقاً نشاطاً آخر في المرتبة ${rank}، سيتم تحويل اختيارك لهذا النشاط الجديد.`);
+            const oldDoc = doc(db, "teacher_activities", actId);
+            let oldUpdate = {};
+            oldUpdate[`rank${rank}Count`] = increment(-1);
+            oldUpdate.totalScore = increment(rank === 1 ? -3 : rank === 2 ? -2 : -1);
+            await updateDoc(oldDoc, oldUpdate);
+          }
+        }
+
+        let updateData = {};
+        if (currentAssignedRank) {
+          updateData[`rank${currentAssignedRank}Count`] = increment(-1);
+          updateData.totalScore = increment(currentAssignedRank === 1 ? -3 : currentAssignedRank === 2 ? -2 : -1);
+        }
+
+        updateData[`rank${rank}Count`] = increment(1);
+        updateData.totalScore = increment(rank === 1 ? 3 : rank === 2 ? 2 : 1);
+        await updateDoc(qDoc, updateData);
+
+        userRankings[id] = rank;
+      }
+
+      localStorage.setItem('userRankings', JSON.stringify(userRankings));
+    };
+
+    window.deleteActivity = async function(id) {
+      if (confirm("هل أنت متأكد من حذف هذا النشاط؟")) {
+        await deleteDoc(doc(db, "teacher_activities", id));
+      }
+    };
+
+    const qQuery = query(activitiesRef, orderBy("totalScore", "desc"));
+    onSnapshot(qQuery, (snapshot) => {
+      const container = document.getElementById("activitiesContainer");
+      container.innerHTML = "";
+
+      if (snapshot.empty) {
+        container.innerHTML = "<p style='text-align:center; color:var(--text-muted); padding: 30px;'>لا توجد أنشطة معروضة حالياً.</p>";
+        return;
+      }
+
+      snapshot.forEach((docSnap) => {
+        const data = docSnap.data();
+        const id = docSnap.id;
+        const myRank = userRankings[id];
+
+        let mediaHtml = "";
+        if (data.mediaUrl) {
+          mediaHtml = `<div class="activity-media"><img src="${data.mediaUrl}" alt="صورة النشاط"></div>`;
+        }
+
+        const card = document.createElement("div");
+        card.className = "activity-card";
+        card.innerHTML = `
+          <div class="activity-header">
+            <span class="teacher-name">👩‍🏫 الأستاذة: ${escapeHtml(data.teacher)}</span>
+            <button class="delete-btn" onclick="deleteActivity('${id}')">🗑️ حذف</button>
+          </div>
+          <div class="activity-title">${escapeHtml(data.title)}</div>
+          <div class="activity-info">🎯 <b>الفئة المستهدفة:</b> ${escapeHtml(data.target)}</div>
+          <div class="activity-info">💡 <b>الهدف التربوي:</b> ${escapeHtml(data.goal)}</div>
+          ${mediaHtml}
+          
+          <div class="ranking-container">
+            <div class="ranking-label">🏆 رتبي هذا النشاط ضمن أفضل 3 أنشطة لديك:</div>
+            <div class="ranking-buttons">
+              <button class="rank-btn ${myRank === 1 ? 'selected-1' : ''}" onclick="setRank('${id}', 1)">🥇 الأولى (3 ن)</button>
+              <button class="rank-btn ${myRank === 2 ? 'selected-2' : ''}" onclick="setRank('${id}', 2)">🥈 الثانية (2 ن)</button>
+              <button class="rank-btn ${myRank === 3 ? 'selected-3' : ''}" onclick="setRank('${id}', 3)">🥉 الثالثة (1 ن)</button>
+            </div>
+            <div class="score-summary">
+              ✨ النتائج: [🥇 ${data.rank1Count || 0}] | [🥈 ${data.rank2Count || 0}] | [🥉 ${data.rank3Count || 0}] (النقاط: ${data.totalScore || 0})
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    });
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.innerText = text;
+      return div.innerHTML;
+    }
+  </script>
+</body>
+</html>
