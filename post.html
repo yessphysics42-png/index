@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إرسال مشاركة الأستاذة - ابتدائية المنار القرآنية إناث</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary-color: #065f46;
+      --primary-hover: #047857;
+      --gold-color: #d97706;
+      --bg-color: #f4fbf7;
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --text-main: #064e3b;
+      --text-muted: #4b5563;
+      --border-color: #a7f3d0;
+      --input-bg: #ffffff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Tajawal', sans-serif; }
+
+    body {
+      background-color: var(--bg-color);
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(6, 95, 70, 0.1) 0%, transparent 25%),
+        linear-gradient(to bottom, rgba(255,255,255,0.6), rgba(244,251,247,0.9));
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 16px;
+    }
+
+    main { width: 100%; max-width: 550px; margin-top: 30px; }
+
+    header {
+      text-align: center; margin-bottom: 25px;
+      background: var(--card-bg); backdrop-filter: blur(8px);
+      padding: 20px; border-radius: 18px; border: 1px solid var(--border-color);
+      box-shadow: 0 8px 20px rgba(6, 95, 70, 0.05);
+    }
+
+    h1 { font-size: 18px; font-weight: 800; color: var(--primary-color); margin-top: 6px; }
+    .subtitle { font-size: 12px; color: var(--gold-color); font-weight: 700; }
+
+    .form-card {
+      background: var(--card-bg); backdrop-filter: blur(8px);
+      border-radius: 18px; padding: 25px; border: 1px solid var(--border-color);
+      box-shadow: 0 10px 25px rgba(6, 95, 70, 0.08);
+    }
+
+    .form-group { margin-bottom: 15px; }
+    label { display: block; font-size: 13px; color: var(--text-muted); margin-bottom: 6px; font-weight: 700; }
+    
+    input[type="text"], textarea {
+      width: 100%; padding: 10px 12px; border: 1px solid var(--border-color);
+      border-radius: 10px; font-size: 14px; outline: none; background: var(--input-bg); color: var(--text-main);
+    }
+    textarea { height: 85px; resize: none; }
+    input:focus, textarea:focus { border-color: var(--primary-color); }
+
+    .btn-submit {
+      width: 100%; background-color: var(--primary-color); color: #fff; border: none;
+      padding: 12px; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 10px;
+    }
+    .btn-submit:hover { background-color: var(--primary-hover); }
+
+    .back-link {
+      display: block; text-align: center; margin-top: 15px; color: var(--primary-color);
+      text-decoration: none; font-size: 13px; font-weight: 700;
+    }
+    .back-link:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <span class="subtitle">🌿 ابتدائية المنار القرآنية إناث 🌿</span>
+      <h1>بوابة إرسال أنشطة الأساتذة</h1>
+    </header>
+
+    <div class="form-card">
+      <div class="form-group">
+        <label>اسم الأستاذة المشاركة:</label>
+        <input type="text" id="teacherName" placeholder="أدخلي اسمك الكامل...">
+      </div>
+
+      <div class="form-group">
+        <label>عنوان أو موضوع النشاط:</label>
+        <input type="text" id="activityTitle" placeholder="مثال: ورشة تحفيظ القرآن الكريم...">
+      </div>
+
+      <div class="form-group">
+        <label>الفئة المستهدفة:</label>
+        <input type="text" id="targetAudience" placeholder="مثال: قسم السنة الأولى...">
+      </div>
+
+      <div class="form-group">
+        <label>الهدف التربوي من النشاط:</label>
+        <textarea id="educationalGoal" placeholder="اكتبي باختصار الهدف التربوي..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>إرفاق صورة النشاط (صور فقط):</label>
+        <input type="file" id="mediaFile" accept="image/*">
+      </div>
+
+      <button class="btn-submit" onclick="submitActivity()">إرسال ونشر المشاركة في المعرض</button>
+      <a href="index.html" class="back-link">← الانتقال إلى المعرض العام والنتائج</a>
+    </div>
+  </main>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyD6ZVsR7CXZIvjaSYC9OKGmxykHM-mM4So",
+      authDomain: "nadwa-8efe3.firebaseapp.com",
+      projectId: "nadwa-8efe3",
+      storageBucket: "nadwa-8efe3.firebasestorage.app",
+      messagingSenderId: "308417718764",
+      appId: "1:308417718764:web:117367cad262d6da84f8c9",
+      measurementId: "G-TPYEW9YG9Z"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const activitiesRef = collection(db, "teacher_activities");
+
+    window.submitActivity = async function() {
+      const teacher = document.getElementById("teacherName").value.trim();
+      const title = document.getElementById("activityTitle").value.trim();
+      const target = document.getElementById("targetAudience").value.trim();
+      const goal = document.getElementById("educationalGoal").value.trim();
+      const fileInput = document.getElementById("mediaFile");
+
+      if (!teacher || !title || !target || !goal) {
+        alert("يرجى ملء جميع الحقول المطلوبة!");
+        return;
+      }
+
+      let mediaUrl = "";
+      if (fileInput.files.length > 0) {
+        const file = fileInput.files[0];
+        const reader = new FileReader();
+        reader.onload = async function(e) {
+          mediaUrl = e.target.result;
+          await saveToDB(teacher, title, target, goal, mediaUrl);
+        };
+        reader.readAsDataURL(file);
+      } else {
+        await saveToDB(teacher, title, target, goal, "");
+      }
+    };
+
+    async function saveToDB(teacher, title, target, goal, mediaUrl) {
+      try {
+        await addDoc(activitiesRef, {
+          teacher: teacher,
+          title: title,
+          target: target,
+          goal: goal,
+          mediaUrl: mediaUrl,
+          rank1Count: 0,
+          rank2Count: 0,
+          rank3Count: 0,
+          totalScore: 0,
+          createdAt: serverTimestamp()
+        });
+        alert("تم إرسال ونشر نشاطك بنجاح في المعرض العام!");
+        document.getElementById("teacherName").value = "";
+        document.getElementById("activityTitle").value = "";
+        document.getElementById("targetAudience").value = "";
+        document.getElementById("educationalGoal").value = "";
+        document.getElementById("mediaFile").value = "";
+      } catch (error) {
+        alert("حدث خطأ أثناء الإرسال!");
+      }
+    }
+  </script>
+</body>
+</html>
