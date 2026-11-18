@@ -3,37 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>لقاء الأولياء - ابتدائية المنار القرآنية</title>
+  <title> لقاء الأمهات السنوي - ابتدائية المنار القرآنية إناث </title>
   
   <!-- خط تجولي العربي -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
 
   <style>
-    /* 🎨 المتغيرات الأساسية (الوضع النهاري) */
+    /* 🌸 المتغيرات الأساسية (الوضع النهاري الأنثوي الراقي) */
     :root {
-      --primary-color: #0f766e;
-      --primary-hover: #0d9488;
-      --bg-color: #f0fdfa;
+      --primary-color: #db2777;       /* وردي مخملي غني */
+      --primary-hover: #be185d;       /* وردي داكن للتفاعل */
+      --secondary-color: #9333ea;     /* بنفسجي ناعم للتدرجات */
+      --accent-soft: #fce7f3;         /* وردي فاتح جداً للخلفيات */
+      --bg-color: #fff5f8;            /* خلفية وردية حالمة ناعمة */
       --card-bg: rgba(255, 255, 255, 0.92);
-      --text-main: #0f172a;
-      --text-muted: #64748b;
-      --border-color: #ccfbf1;
-      --input-bg: #ffffff;
-      --card-shadow: 0 10px 25px -5px rgba(15, 118, 110, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
-      --danger-color: #ef4444;
+      --text-main: #3b1227;           /* عنابي داكن مريح للعين بدل الأسود الحاد */
+      --text-muted: #83546b;          /* وردي رمادي للنصوص الفرعية */
+      --border-color: #fbcfe8;        /* حدود وردية ناعمة */
+      --input-bg: #fffbfc;
+      --card-shadow: 0 12px 30px -5px rgba(219, 39, 119, 0.1), 0 8px 12px -6px rgba(147, 51, 234, 0.05);
+      --danger-color: #e11d48;
     }
 
-    /* 🌙 المتغيرات الخاصة بالوضع الليلي */
+    /* 🌙 المتغيرات الخاصة بالوضع الليلي الأنثوي الدافئ */
     body.dark-mode {
-      --bg-color: #0f172a;
-      --card-bg: rgba(30, 41, 59, 0.92);
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --border-color: #334155;
-      --input-bg: #1e293b;
-      --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+      --primary-color: #f472b6;
+      --primary-hover: #ec4899;
+      --secondary-color: #c084fc;
+      --accent-soft: rgba(244, 114, 182, 0.15);
+      --bg-color: #1a0b14;            /* بنفسجي-عنابي ليلي دافئ */
+      --card-bg: rgba(42, 20, 34, 0.9);
+      --text-main: #fdf2f8;
+      --text-muted: #d8b4c8;
+      --border-color: #5b2644;
+      --input-bg: #26111e;
+      --card-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.55);
     }
 
     * {
@@ -41,113 +47,199 @@
       margin: 0;
       padding: 0;
       font-family: 'Tajawal', sans-serif;
-      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
     }
 
     body {
       background-color: var(--bg-color);
-      /* خلفية متدرجة زاهية ورائعة للاستجابة */
+      /* خلفية ناعمة بدوائر ضبابية وردية وبنفسجية وزهرية */
       background-image: 
-        radial-gradient(circle at 10% 20%, rgba(15, 118, 110, 0.12) 0%, transparent 20%),
-        radial-gradient(circle at 90% 80%, rgba(13, 148, 136, 0.12) 0%, transparent 25%);
+        radial-gradient(circle at 12% 15%, rgba(236, 72, 153, 0.14) 0%, transparent 28%),
+        radial-gradient(circle at 88% 25%, rgba(168, 85, 247, 0.12) 0%, transparent 30%),
+        radial-gradient(circle at 50% 88%, rgba(244, 114, 182, 0.14) 0%, transparent 35%);
       background-attachment: fixed;
       color: var(--text-main);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 20px 16px;
+      padding: 24px 16px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* أشكال زخرفية ناعمة في الخلفية */
+    body::before, body::after {
+      content: "🌸";
+      position: fixed;
+      font-size: 90px;
+      opacity: 0.06;
+      pointer-events: none;
+      z-index: 0;
+    }
+    body::before {
+      top: 40px;
+      right: -15px;
+      transform: rotate(15deg);
+    }
+    body::after {
+      bottom: 30px;
+      left: -15px;
+      transform: rotate(-20deg);
     }
 
     main {
       width: 100%;
-      max-width: 600px;
+      max-width: 620px;
       position: relative;
+      z-index: 1;
     }
 
     /* 🔘 زر التبديل بين الوضع الليلي والنهاري */
     .theme-toggle-btn {
       position: absolute;
-      top: 0;
-      left: 0;
+      top: 14px;
+      left: 14px;
       background: var(--card-bg);
-      border: 1px solid var(--border-color);
+      border: 1.5px solid var(--border-color);
       color: var(--text-main);
-      padding: 6px 12px;
-      border-radius: 20px;
+      padding: 7px 14px;
+      border-radius: 50px;
       cursor: pointer;
       font-size: 13px;
       font-weight: 700;
       display: flex;
       align-items: center;
       gap: 6px;
-      box-shadow: var(--card-shadow);
+      box-shadow: 0 4px 12px rgba(219, 39, 119, 0.12);
       z-index: 10;
     }
 
     .theme-toggle-btn:hover {
-      transform: scale(1.03);
+      transform: scale(1.05);
+      border-color: var(--primary-color);
     }
 
+    /* 🌷 بطاقة الترويسة */
     header {
       text-align: center;
       margin-bottom: 24px;
-      margin-top: 10px;
       display: flex;
       flex-direction: column;
       align-items: center;
       background: var(--card-bg);
-      backdrop-filter: blur(8px);
-      padding: 20px;
-      border-radius: 16px;
-      border: 1px solid var(--border-color);
+      backdrop-filter: blur(12px);
+      padding: 42px 22px 26px;
+      border-radius: 28px;
+      border: 1.5px solid var(--border-color);
       box-shadow: var(--card-shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* شريط علوي متدرج جمالي للبطاقة */
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, #f472b6, #db2777, #9333ea, #f472b6);
     }
 
     .logo-img {
-      max-width: 120px;
+      max-width: 115px;
       height: auto;
       margin-bottom: 12px;
+      border-radius: 18px;
     }
 
-    .subtitle {
-      font-size: 14px;
-      color: var(--text-muted);
-      font-weight: 500;
-      margin-bottom: 6px;
+    .welcome-badge {
+      background: linear-gradient(135deg, rgba(219, 39, 119, 0.12), rgba(147, 51, 234, 0.12));
+      color: var(--primary-color);
+      padding: 5px 16px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      border: 1px solid var(--border-color);
     }
 
     h1 {
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--text-main);
+      font-size: 26px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       line-height: 1.4;
+      margin-bottom: 18px;
     }
 
+    /* 🗓️ بطاقات تفاصيل الموعد (التاريخ، التوقيت، المكان) */
+    .event-details {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+      background: var(--accent-soft);
+      padding: 14px 16px;
+      border-radius: 20px;
+      border: 1px dashed var(--primary-color);
+    }
+
+    .detail-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .detail-pill {
+      background: var(--input-bg);
+      color: var(--text-main);
+      padding: 7px 14px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 2px 6px rgba(219, 39, 119, 0.06);
+    }
+
+    .detail-pill span.icon {
+      font-size: 16px;
+    }
+
+    /* ✍️ بطاقة كتابة السؤال */
     .form-card {
       background: var(--card-bg);
-      backdrop-filter: blur(8px);
-      border-radius: 16px;
-      padding: 18px;
+      backdrop-filter: blur(12px);
+      border-radius: 26px;
+      padding: 22px;
       box-shadow: var(--card-shadow);
-      border: 1px solid var(--border-color);
-      margin-bottom: 24px;
+      border: 1.5px solid var(--border-color);
+      margin-bottom: 26px;
     }
 
     .form-card label {
-      display: block;
-      font-size: 14px;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 15px;
+      color: var(--text-main);
+      margin-bottom: 10px;
+      font-weight: 700;
     }
 
     textarea {
       width: 100%;
-      height: 95px;
-      padding: 12px;
-      border: 1px solid var(--border-color);
-      border-radius: 10px;
+      height: 100px;
+      padding: 14px;
+      border: 1.5px solid var(--border-color);
+      border-radius: 18px;
       font-size: 15px;
       resize: none;
       outline: none;
@@ -155,68 +247,91 @@
       color: var(--text-main);
     }
 
+    textarea::placeholder {
+      color: var(--text-muted);
+      opacity: 0.8;
+    }
+
     textarea:focus {
       border-color: var(--primary-color);
+      box-shadow: 0 0 0 4px rgba(219, 39, 119, 0.12);
     }
 
     .btn-submit {
       width: 100%;
-      background-color: var(--primary-color);
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
       color: #ffffff;
       border: none;
-      padding: 12px;
-      border-radius: 10px;
+      padding: 13px;
+      border-radius: 50px;
       font-size: 16px;
       font-weight: 700;
       cursor: pointer;
-      margin-top: 10px;
-      transition: background 0.2s, transform 0.1s;
+      margin-top: 12px;
+      box-shadow: 0 6px 18px rgba(219, 39, 119, 0.25);
     }
 
     .btn-submit:hover {
-      background-color: var(--primary-hover);
-      transform: translateY(-1px);
+      opacity: 0.94;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(219, 39, 119, 0.35);
     }
 
+    /* 💬 قسم الأسئلة */
     .section-header {
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 12px;
+      align-items: center;
+      margin-bottom: 14px;
+      padding: 0 6px;
     }
 
     .section-header h3 {
-      font-size: 18px;
+      font-size: 19px;
+      font-weight: 800;
       color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .section-header small {
-      color: var(--text-muted);
+      color: var(--primary-color);
+      background: var(--accent-soft);
+      padding: 4px 12px;
+      border-radius: 50px;
       font-size: 12px;
+      font-weight: 700;
     }
 
     .questions-list {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 14px;
     }
 
     .q-card {
       background: var(--card-bg);
-      backdrop-filter: blur(8px);
-      border-radius: 12px;
-      padding: 16px;
-      border: 1px solid var(--border-color);
+      backdrop-filter: blur(10px);
+      border-radius: 22px;
+      padding: 18px;
+      border: 1.5px solid var(--border-color);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
       box-shadow: var(--card-shadow);
+      position: relative;
+    }
+
+    .q-card:hover {
+      border-color: var(--primary-color);
+      transform: translateY(-2px);
     }
 
     .q-text {
-      font-size: 15px;
-      line-height: 1.5;
+      font-size: 15.5px;
+      line-height: 1.6;
       color: var(--text-main);
       word-break: break-word;
     }
@@ -226,11 +341,11 @@
       background: none;
       border: none;
       color: var(--danger-color);
-      font-size: 12px;
+      font-size: 12.5px;
       cursor: pointer;
-      margin-top: 6px;
+      margin-top: 8px;
       padding: 0;
-      font-weight: 500;
+      font-weight: 600;
       display: none;
     }
 
@@ -243,49 +358,85 @@
       display: inline-block;
     }
 
+    /* 💖 زر الإعجاب بشكل قلب أنيق */
     .like-btn {
-      background: var(--input-bg);
-      border: 1px solid var(--border-color);
-      padding: 6px 12px;
-      border-radius: 20px;
+      background: var(--accent-soft);
+      border: 1.5px solid var(--border-color);
+      padding: 8px 15px;
+      border-radius: 50px;
       cursor: pointer;
       display: flex;
       align-items: center;
       gap: 6px;
       font-size: 14px;
-      color: var(--text-main);
+      color: var(--primary-color);
       white-space: nowrap;
-      font-weight: 700;
+      font-weight: 800;
     }
 
     .like-btn:hover {
-      background: rgba(15, 118, 110, 0.1);
+      background: var(--primary-color);
+      color: #ffffff;
+      border-color: var(--primary-color);
+      transform: scale(1.06);
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 22px;
+      }
+      .detail-pill {
+        font-size: 13px;
+        width: 100%;
+        justify-content: center;
+      }
     }
   </style>
 </head>
 <body>
 
   <main>
-    <!-- زر تبديل الوضع الليلي/النهاري -->
-    <button class="theme-toggle-btn" onclick="toggleTheme()">
-      <span id="themeIcon">🌙</span> <span id="themeText">الوضع الليلي</span>
-    </button>
-
     <header>
+      <!-- زر تبديل الوضع الليلي/النهاري -->
+      <button class="theme-toggle-btn" onclick="toggleTheme()">
+        <span id="themeIcon">🌙</span> <span id="themeText">الوضع الليلي</span>
+      </button>
+
       <img src="logo.png" alt="شعار المؤسسة" class="logo-img" id="logo" onerror="this.style.display='none'">
-      <span class="subtitle">الاثنين 26 أكتوبر 2026م</span>
-      <h1 id="eventTitle">اللقاء السنوي لأولياء ابتدائية المنار القرآنية</h1>
+      
+      <span class="welcome-badge">🌸 أهلاً بالأمهات الفاضلات 🌸</span>
+      <h1 id="eventTitle">لقاء الأمهات السنوي</h1>
+
+      <!-- تفاصيل الموعد والمكان -->
+      <div class="event-details">
+        <div class="detail-row">
+          <div class="detail-pill">
+            <span class="icon">📅</span>
+            <span>السبت 21 نوفمبر 2026م</span>
+          </div>
+          <div class="detail-pill">
+            <span class="icon">⏰</span>
+            <span>من 15:00 إلى 17:00 مساءً</span>
+          </div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-pill">
+            <span class="icon">📍</span>
+            <span>قاعة متعددة النشاطات - مركب المنار - الحميز</span>
+          </div>
+        </div>
+      </div>
     </header>
 
     <div class="form-card">
-      <label for="questionInput">اكتب سؤالك بوضوح</label>
-      <textarea id="questionInput" placeholder="اكتب سؤالك هنا..."></textarea>
-      <button class="btn-submit" onclick="sendQuestion()">إرسال السؤال</button>
+      <label for="questionInput">✨ شاركينا سؤالكِ أو استفساركِ بكل ود</label>
+      <textarea id="questionInput" placeholder="اكتبي سؤالكِ هنا..."></textarea>
+      <button class="btn-submit" onclick="sendQuestion()">إرسال السؤال 🌷</button>
     </div>
 
     <div class="section-header">
-      <h3>الأسئلة</h3>
-      <small>مرتّبة حسب الإعجابات</small>
+      <h3>💬 أسئلة الأمهات</h3>
+      <small>مرتّبة حسب التفاعل ♥</small>
     </div>
 
     <div id="questionsContainer" class="questions-list">
@@ -356,7 +507,7 @@
       const text = textInput.value.trim();
 
       if (!text) {
-        alert("يرجى كتابة السؤال أولاً");
+        alert("يرجى كتابة السؤال أولاً 🌸");
         return;
       }
 
@@ -379,7 +530,7 @@
 
     // 3. وظيفة حذف السؤال (خاصة بالمنظم)
     window.deleteQuestion = async function(id) {
-      if (confirm("هل أنت متأكد من حذف هذا السؤال؟")) {
+      if (confirm("هل أنتِ متأكدة من حذف هذا السؤال؟")) {
         const qDoc = doc(db, "questions", id);
         await deleteDoc(qDoc);
       }
@@ -392,7 +543,7 @@
       container.innerHTML = "";
 
       if (snapshot.empty) {
-        container.innerHTML = "<p style='text-align:center; color:var(--text-muted); padding: 20px;'>لا توجد أسئلة بعد. كن أول من يسأل!</p>";
+        container.innerHTML = "<p style='text-align:center; color:var(--text-muted); padding: 24px; background: var(--card-bg); border-radius: 20px; border: 1px dashed var(--border-color);'>لا توجد أسئلة بعد.. كوني أول من يشاركنا استفساره 🌷</p>";
         return;
       }
 
@@ -406,7 +557,7 @@
             <button class="delete-btn" onclick="deleteQuestion('${docSnap.id}')">🗑️ حذف السؤال</button>
           </div>
           <button class="like-btn" onclick="likeQuestion('${docSnap.id}')">
-            👍 <span>${data.likes || 0}</span>
+            ❤️ <span>${data.likes || 0}</span>
           </button>
         `;
         container.appendChild(card);
